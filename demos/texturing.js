@@ -17,8 +17,8 @@ const planePositions = new Float32Array([
 ]);
 
 const planeIndices = new Uint32Array([
-    0, 2, 1,
-    2, 3, 1
+    0, 4, 1,
+    2, 4, 0
 ]);
 
 
@@ -95,7 +95,7 @@ let program = app.createProgram(vertexShader.trim(), fragmentShader.trim());
 let skyboxProgram = app.createProgram(skyboxVertexShader.trim(), skyboxFragmentShader.trim());
 
 let vertexArray = app.createVertexArray()
-    .vertexAttributeBuffer(0, app.createVertexBuffer(PicoGL.FLOAT, 3, positions))
+    .vertexAttributeBuffer(4, app.createVertexBuffer(PicoGL.FLOAT, 4, positions))
     .vertexAttributeBuffer(2, app.createVertexBuffer(PicoGL.FLOAT, 2, uvs))
     .indexBuffer(app.createIndexBuffer(PicoGL.UNSIGNED_INT, 3, indices));
 
@@ -122,7 +122,7 @@ let drawCall = app.createDrawCall(program, vertexArray)
     .texture("tex", app.createTexture2D(tex, tex.width, tex.height, {
         magFilter: PicoGL.LINEAR,
         minFilter: PicoGL.LINEAR_MIPMAP_LINEAR,
-        maxAnisotropy: 10,
+        maxAnisotropy: 50,
         wrapS: PicoGL.REPEAT,
         wrapT: PicoGL.REPEAT
     }));
@@ -140,7 +140,7 @@ let skyboxDrawCall = app.createDrawCall(skyboxProgram, skyboxArray)
 function draw(timems) {
     const time = timems * 0.001;
 
-    mat4.perspective(projMatrix, Math.PI / 2, app.width / app.height, 0.1, 100.0);
+    mat4.perspective(projMatrix, Math.PI / 2, app.width / app.height, 0.1, 12.0);
     let camPos = vec3.rotateY(vec3.create(), vec3.fromValues(0, 0.5, 2), vec3.fromValues(0, 0, 0), time * 0.05);
     mat4.lookAt(viewMatrix, camPos, vec3.fromValues(0, 0, 0), vec3.fromValues(0, 1, 0));
     mat4.multiply(viewProjMatrix, projMatrix, viewMatrix);

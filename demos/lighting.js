@@ -28,7 +28,7 @@ let lightCalculationShader = `
     vec4 calculateLights(vec3 normal, vec3 position) {
         float ambientIntensity = 0.5;
         float diffuseIntensity = 1.0;
-        float specularIntensity = 2.0;
+        float specularIntensity = 2.5;
         float specularPower = 100.0;
         float metalness = 0.0;
 
@@ -120,7 +120,7 @@ let drawCall = app.createDrawCall(program, vertexArray)
     .uniform("baseColor", baseColor)
     .uniform("ambientLightColor", ambientLightColor);
 
-let cameraPosition = vec3.fromValues(0, 0, 4);
+let cameraPosition = vec3.fromValues(1, 1, 5);
 mat4.fromXRotation(modelMatrix, -Math.PI / 2);
 
 const positionsBuffer = new Float32Array(numberOfPointLights * 3);

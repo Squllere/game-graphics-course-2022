@@ -72,7 +72,7 @@ let shadowFragmentShader = `
     
     void main() {
         // Uncomment to see the depth buffer of the shadow map    
-        //fragColor = vec4((gl_FragCoord.z - 0.98) * 50.0);    
+        fragColor = vec4((gl_FragCoord.z - 0.98) * 50.0);    
     }
 `;
 

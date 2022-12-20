@@ -72,7 +72,7 @@ let mirrorFragmentShader = `
         vec2 screenPos = gl_FragCoord.xy / screenSize;
         
         // 0.03 is a mirror distortion factor, try making a larger distortion         
-        screenPos.x += (texture(distortionMap, vUv).r - 0.5) * 0.03;
+        screenPos.x += (texture(distortionMap, vUv).r - 0.5) * 0.23;
         outColor = texture(reflectionTex, screenPos);
     }
 `;

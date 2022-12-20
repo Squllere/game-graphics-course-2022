@@ -183,7 +183,7 @@ let mirrorVertexShader = `
     {
         vUv = uv;
         vec4 pos = position;
-        pos.xyz *= 9.0;
+        pos.xyz *= 7.0;
         pos.y -= 5.0;
         gl_Position = modelViewProjectionMatrix * pos;
     }
@@ -426,8 +426,8 @@ function drawMirror() {
 function draw(timems) {
     let time = timems / 1500;
 
-    mat4.perspective(projMatrix, Math.PI / 2.5, 1.0 * app.width / app.height, 0.1, 100.0);
-    vec3.rotateY(cameraPosition, vec3.fromValues(10, 10, 9.4), vec3.fromValues(20, 0, 0), time * 0.05);
+    mat4.perspective(projMatrix, Math.PI / 2.5, 1.0 * app.width / app.height, 2.1, 160.0);
+    vec3.rotateY(cameraPosition, vec3.fromValues(3, 19, 9.4), vec3.fromValues(50, 0, 20), time * 0.05);
     mat4.lookAt(viewMatrix, cameraPosition, vec3.fromValues(2, -0.5, 0), vec3.fromValues(-1, 2, 0));
 
     mat4.multiply(viewProjMatrix, projMatrix, viewMatrix);

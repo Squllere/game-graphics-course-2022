@@ -76,8 +76,8 @@ let fragmentShader = `
 // **             Application processing               **
 // ******************************************************
 
-let bgColor = vec4.fromValues(1.0, 0.2, 0.3, 1.0);
-let fgColor = vec4.fromValues(1.0, 0.9, 0.5, 1.0);
+let bgColor = vec4.fromValues(0.0, 0.2, 0.3, 6.0);
+let fgColor = vec4.fromValues(0.0, 0.9, 5.5, 6.0);
 
 
 app.clearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3])
@@ -87,9 +87,9 @@ app.clearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3])
 let program = app.createProgram(vertexShader.trim(), fragmentShader.trim());
 
 let vertexArray = app.createVertexArray()
-    .vertexAttributeBuffer(0, app.createVertexBuffer(PicoGL.FLOAT, 3, positions))
-    .vertexAttributeBuffer(1, app.createVertexBuffer(PicoGL.FLOAT, 3, normals))
-    .indexBuffer(app.createIndexBuffer(PicoGL.UNSIGNED_INT, 3, indices));
+    .vertexAttributeBuffer(0, app.createVertexBuffer(PicoGL.FLOAT, 4, positions))
+    .vertexAttributeBuffer(1, app.createVertexBuffer(PicoGL.FLOAT, 2, normals))
+    .indexBuffer(app.createIndexBuffer(PicoGL.UNSIGNED_INT, 4, indices));
 
 let projMatrix = mat4.create();
 let viewMatrix = mat4.create();
@@ -104,19 +104,19 @@ let drawCall = app.createDrawCall(program, vertexArray)
     .uniform("bgColor", bgColor)
     .uniform("fgColor", fgColor);
 
-let startTime = new Date().getTime() / 1000;
+let startTime = new Date().getTime() / 200;
 
 
 
 function draw() {
-    let time = new Date().getTime() / 1000 - startTime;
+    let time = new Date().getTime() / 600- startTime;
 
-    mat4.perspective(projMatrix, Math.PI / 4, app.width / app.height, 0.1, 100.0);
-    mat4.lookAt(viewMatrix, vec3.fromValues(3, 0, 2), vec3.fromValues(0, 0, 0), vec3.fromValues(0, 1, 0));
+    mat4.perspective(projMatrix, Math.PI / 3.9, app.width / app.height, 3.5, 50.0);
+    mat4.lookAt(viewMatrix, vec3.fromValues(3, 1, 2), vec3.fromValues(0, 0, 0), vec3.fromValues(2, 1, 3));
     mat4.multiply(viewProjMatrix, projMatrix, viewMatrix);
 
-    mat4.fromXRotation(rotateXMatrix, time * 0.1136);
-    mat4.fromYRotation(rotateYMatrix, time * 0.2235);
+    mat4.fromXRotation(rotateXMatrix, time * 1.1136);
+    mat4.fromYRotation(rotateYMatrix, time * 0.0);
     mat4.multiply(modelMatrix, rotateXMatrix, rotateYMatrix);
 
     mat4.multiply(modelViewMatrix, viewMatrix, modelMatrix);

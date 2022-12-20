@@ -9,7 +9,7 @@ import {positions as secondPositions, uvs as secondUvs, indices as secondIndices
 let baseColor = vec3.fromValues(0.5, 0.9, 0.18);
 let ambientLightColor = vec3.fromValues(2.1, 0.1, 3.0);
 let numberOfPointLights = 2;
-let pointLightColors = [vec3.fromValues(2.0, 1.0, 1.0), vec3.fromValues(0.6, 0.1, 2.2)];
+let pointLightColors = [vec3.fromValues(2.0, 1.0, 1.0), vec3.fromValues(0.6, 1.1, 2.2)];
 let pointLightInitialPositions = [vec3.fromValues(5, 0, 2), vec3.fromValues(-5, 0, 2)];
 let pointLightPositions = [vec3.create(), vec3.create()];
 

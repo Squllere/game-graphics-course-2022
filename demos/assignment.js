@@ -183,7 +183,7 @@ let mirrorVertexShader = `
     {
         vUv = uv;
         vec4 pos = position;
-        pos.xyz *= 7.0;
+        pos.xyz *= 7.1;
         pos.y -= 5.0;
         gl_Position = modelViewProjectionMatrix * pos;
     }
